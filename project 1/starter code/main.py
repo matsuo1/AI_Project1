@@ -36,6 +36,7 @@ class Plan:
 
         # get table object from initial state
         table = State.find(self.initial_state, "table")
+        
 
         if block1.air:
             block1.on = table
@@ -62,6 +63,24 @@ class Plan:
             block1.on = None
 
             block2.clear = True
+    
+    def stack(self, block1, block2):
+        #Operator to stack block1 onto block 2
+        if block2.clear:
+            block1.clear = True
+            block1.air = False
+            block1.on = block2
+
+            block2.clear = False 
+
+    def pickup(self,block1):
+        table = State.find(self.initial_state, "table")
+
+        if block1.on == table:
+            block1.air == True
+            
+    def move(self,direction):
+        pass
 
     # ***=========================================
     # After you implement all the operators
