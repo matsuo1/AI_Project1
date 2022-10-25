@@ -8,7 +8,6 @@
 from state import State
 
 class Plan:
-
     def __init__(self, initial_state, goal_state):
         """
         Initialize initial state and goal state
@@ -19,6 +18,8 @@ class Plan:
         """
         self.initial_state = initial_state
         self.goal_state = goal_state
+        self.steps = 0
+
 
     #***=========================================
     # First implement all the operators
@@ -37,10 +38,11 @@ class Plan:
         # get table object from initial state
         table = State.find(self.initial_state, "table")
         
-
         if block1.air:
+            
             block1.on = table
             block1.clear = True
+            self.steps += 1
 
     def unstack(self, block1, block2):
         """
@@ -54,7 +56,7 @@ class Plan:
 
         # if block1 is clear safe to unstack
         if block1.clear:
-
+            print('unstacking',block1.id, 'from', block2.id)
             # block1 should be in air
             # block1 should not be on block2
             # set block2 to clear (because block1 is in air)
@@ -63,26 +65,31 @@ class Plan:
             block1.on = None
 
             block2.clear = True
+            self.steps += 1
     
     def stack(self, block1, block2):
         #Operator to stack block1 onto block 2
         if block2.clear:
+            print('stacking',block1.id, 'onto', block2.id)
             block1.clear = True
             block1.air = False
             block1.on = block2
 
             block2.clear = False 
+            self.steps += 1
 
     def pickup(self,block1):
         table = State.find(self.initial_state, "table")
 
         if block1.on == table:
+            print('Picking up: ',block1.id)
             block1.air = True
             block1.on = None
+            self.steps += 1
             
-    def move(self,block1,start,finish):
-        if block1.air:
-            pass
+    def move(self):
+        print('Moving...')
+        self.steps += 1
 
 
     # ***=========================================
