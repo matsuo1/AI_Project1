@@ -42,7 +42,10 @@ class Plan:
             
             block1.on = table
             block1.clear = True
+            block1.air = False
             self.steps += 1
+            action = f"Putdown({block1}, table)"
+            State.display(self.initial_state, message=action)
 
     def unstack(self, block1, block2):
         """
@@ -66,6 +69,8 @@ class Plan:
 
             block2.clear = True
             self.steps += 1
+            action = f"Unstack({block1}, table)"
+            State.display(self.initial_state, message=action)
     
     def stack(self, block1, block2):
         #Operator to stack block1 onto block 2
@@ -77,6 +82,8 @@ class Plan:
 
             block2.clear = False 
             self.steps += 1
+            action = f"Stack{block1} on {block2}"
+            State.display(self.initial_state, message=action)
 
     def pickup(self,block1):
         table = State.find(self.initial_state, "table")
@@ -86,10 +93,14 @@ class Plan:
             block1.air = True
             block1.on = None
             self.steps += 1
+            action = f"Pick up {block1} from {table}"
+            State.display(self.initial_state, message=action)
             
-    def move(self):
+    def move(self,block1):
         print('Moving...')
         self.steps += 1
+        action = f"Moved {block1}"
+        State.display(self.initial_state, message=action)
 
 
     # ***=========================================
@@ -97,6 +108,17 @@ class Plan:
     # The next step is to implement the actual plan.
     # Please fill in the sample plan to output the appropriate steps to reach the goal
     # ***=========================================
+
+    def aStar(self,start,goal):
+        frontier = []
+        states=[]
+
+    def getNeighbors(self,state,block):
+        for i in state:
+            if i.clear == True:
+                print("we can move this: ", i)
+
+
 
     def sample_plan(self):
 
@@ -109,20 +131,22 @@ class Plan:
 
         block_c = State.find(self.initial_state, "C")
         block_d = State.find(self.initial_state, "D")
+        block_e = State.find(self.initial_state, "E")
+        
+        #self.getNeighbors(self.initial_state,block_c)
+        #Unstack the block
+        #self.unstack(block_d, block_c)
 
-        # Unstack the block
-        self.unstack(block_d, block_c)
+        #print the state
+        #action = f"unstack{block_d, block_c}"
+        #State.display(self.initial_state, message=action)
 
-        # print the state
-        action = f"unstack{block_d, block_c}"
-        State.display(self.initial_state, message=action)
+        #put the block on the table
+        #self.putdown(block_d)
 
-        # put the block on the table
-        self.putdown(block_d)
-
-        # print the state
-        action = f"Putdown({block_d}, table)"
-        State.display(self.initial_state, message=action)
+        #print the state
+        #action = f"Putdown({block_d}, table)"
+        #State.display(self.initial_state, message=action)
 
 
 
@@ -131,6 +155,7 @@ if __name__ == "__main__":
     # get the initial state
     initial_state = State()
     initial_state_blocks = initial_state.create_state_from_file("input.txt")
+    print(initial_state.blocks)
 
     #display initial state
     State.display(initial_state_blocks, message="Initial State")
@@ -138,6 +163,7 @@ if __name__ == "__main__":
     # get the goal state
     goal_state = State()
     goal_state_blocks = goal_state.create_state_from_file("goal.txt")
+    
 
     #display goal state
     State.display(goal_state_blocks, message="Goal State")
