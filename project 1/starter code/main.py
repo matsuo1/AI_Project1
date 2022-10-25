@@ -77,7 +77,8 @@ class Plan:
         table = State.find(self.initial_state, "table")
 
         if block1.on == table:
-            block1.air == True
+            block1.air = True
+            block1.on = None
             
     def move(self,block1,start,finish):
         if block1.air:
