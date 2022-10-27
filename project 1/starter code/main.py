@@ -54,7 +54,7 @@ class Plan:
         :param block1: block1 to unstack from block2
         :type block1: Object of block.Block
         :type block2: Object of block.Block
-        :return: None
+        :return: None   
         """
 
         # if block1 is clear safe to unstack
@@ -69,7 +69,7 @@ class Plan:
 
             block2.clear = True
             self.steps += 1
-            action = f"Unstack({block1}, table)"
+            action = f"Unstack({block1}, {block2})"
             State.display(self.initial_state, message=action)
     
     def stack(self, block1, block2):
@@ -109,15 +109,85 @@ class Plan:
     # Please fill in the sample plan to output the appropriate steps to reach the goal
     # ***=========================================
 
-    def aStar(self,start,goal):
-        frontier = []
-        states=[]
+    def neighbors(self, bestBlock, currState):
+        possibleMoves = []
+        print("GETTING THE NEIGHBORS FOR BLOCK "+ bestBlock.id)
+        if repr(bestBlock.on) == 'table':
+            print("picking up block " + bestBlock.id +  " from: ", bestBlock.on)
+            self.pickup(bestBlock)
+            print("block " + bestBlock.id + " is picked up and on: ", bestBlock.on)
+        else: 
+            print("unstacking block " + bestBlock.id + " from: ", bestBlock.on)
+            self.unstack(bestBlock,bestBlock.on)
+            print("block "  + bestBlock.id +  " is unstacked and on: ", bestBlock.on)
+        for i in currState:
+            if i.type == 3 or i.id == bestBlock.id:
+                continue
+            if i.clear:
+                possibleMoves.append(i)
+            print("curr state: ",i," is on ",  i.on, " and clear?: ", i.clear)
+            print("possible moves: ", possibleMoves)
+        return possibleMoves
+   
 
-    def getNeighbors(self,state,block):
+    def clearBlocks(self,state):
+        openMoves = []
         for i in state:
             if i.clear == True:
+                openMoves.append(i)
                 print("we can move this: ", i)
+        return openMoves
 
+    def heuristic(self,moves,goal_state_blocks): 
+        blocks = [] # can anyone think of a better/ more efficent way to get the highest #
+        for i in range(len(moves)):
+            score =0 
+            if i == 0:
+                continue
+            if moves[i].clear == goal_state_blocks[i].clear:
+                score += 1
+            if moves[i].on == goal_state_blocks[i].on:
+                score += 1
+            blocks.append((score,moves[i]))
+            print("the score for ", moves[i], "is ", score)
+            print("blocks list consists of ", blocks)
+    
+        blocks.sort()
+        bestMove = blocks.pop(0)
+        print("thebest move,", bestMove)
+        return bestMove
+    
+    def aStar(self,initial_state,goal):
+        frontier= [] #priority queue
+        currState = initial_state
+        #path = [] # dont know yet 
+        #path.append(start) # dont know yet  
+        #Avistited = [] # temp visited list fro testing  # dont know yet  
+        moves = self.clearBlocks(initial_state)
+        aScore1 = self.heuristic(moves,goal)  #what block, from the list of the clear blocks should we move? 
+        frontier.append((aScore1))
+        print ("frontier ", frontier)
+         # ***=========================================
+        #Avistited.append(start) 
+        while(frontier):
+            frontier.sort()
+            bestBlock = frontier.pop() # node with the lowest ASTAR score in frontier.
+            print (bestBlock[1])
+           # path.append(node[2])
+            #if node[2] == end:
+             #   return path #retrun path       
+            nextneighbors = self.neighbors(bestBlock[1],currState) 
+            print("neighbors", nextneighbors)  
+            moveTo = self.heuristic(nextneighbors,goal) #need
+            print("move to", moveTo[1])
+            self.stack(bestBlock[1], moveTo[1])
+            #for neighbor in nextneighbors:
+             #   if neighbor not in Avistited:
+              #      pathCost = node[1]+1
+                     #aScore = heuristic(enpathCost,neighbor)
+                #    frontier.append((aScore,pathCost,neighbor))
+                 #   Avistited.append(neighbor)
+        return 0
 
 
     def sample_plan(self):
@@ -130,10 +200,18 @@ class Plan:
         # You must automate this code such that it would produce a plan for any initial and goal states.
 
         block_c = State.find(self.initial_state, "C")
-        block_d = State.find(self.initial_state, "D")
-        block_e = State.find(self.initial_state, "E")
+        #block_d = State.find(self.initial_state, "D")
+        #block_e = State.find(self.initial_state, "E")
+  
+        self.aStar(self.initial_state, goal_state_blocks)
+
+        #moves = self.clearBlocks(self.initial_state)
+        #print("the open blocks that we can move are: ", moves)
+        #self.heuristic(moves,goal_state_blocks)
+
         
-        #self.getNeighbors(self.initial_state,block_c)
+    
+      
         #Unstack the block
         #self.unstack(block_d, block_c)
 
@@ -147,7 +225,6 @@ class Plan:
         #print the state
         #action = f"Putdown({block_d}, table)"
         #State.display(self.initial_state, message=action)
-
 
 
 if __name__ == "__main__":
