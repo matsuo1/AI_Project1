@@ -138,7 +138,7 @@ class Plan:
                 print("we can move this: ", i)
         return openMoves
 
-    def heuristic(self,moves,goal_state_blocks): 
+    def heuristic(self,moves,goal_state_blocks): #pick-up function 
         blocks = [] # can anyone think of a better/ more efficent way to get the highest #
         for i in range(len(moves)):
             score =0 
@@ -151,12 +151,29 @@ class Plan:
             blocks.append((score,moves[i]))
             print("the score for ", moves[i], "is ", score)
             print("blocks list consists of ", blocks)
-    
-        blocks.sort()
+            print(moves[i], "is clear?", moves[i].clear, "and is on?", moves[i].on)
+        #blocks.sort()
         bestMove = blocks.pop(0)
         print("thebest move,", bestMove)
         return bestMove
     
+    def putdown_priority(self,block1,current_state,goal_state_blocks): 
+        current_state[0].clear = True
+        goal = goal_state_blocks
+        match = block1
+        for i in range(len(goal)):
+            if block1 == goal[i]: #If the loop finds the same block as the one in the air
+                match = goal[i]
+                break
+        for j in range(len(current_state)):
+            if match.on == current_state[j]:
+                print("helpme",current_state[j])
+                if current_state[j] == "table":
+                    self.putdown(block1)
+                elif current_state[j].clear == True:
+                    self.stack(block1,current_state[j])
+    
+
     def aStar(self,initial_state,goal):
         frontier= [] #priority queue
         currState = initial_state
@@ -164,6 +181,7 @@ class Plan:
         #path.append(start) # dont know yet  
         #Avistited = [] # temp visited list fro testing  # dont know yet  
         moves = self.clearBlocks(initial_state)
+        print("SOS",moves)
         aScore1 = self.heuristic(moves,goal)  #what block, from the list of the clear blocks should we move? 
         frontier.append((aScore1))
         print ("frontier ", frontier)
@@ -178,15 +196,17 @@ class Plan:
              #   return path #retrun path       
             nextneighbors = self.neighbors(bestBlock[1],currState) 
             print("neighbors", nextneighbors)  
-            moveTo = self.heuristic(nextneighbors,goal) #need
-            print("move to", moveTo[1])
-            self.stack(bestBlock[1], moveTo[1])
+            #moveTo = self.putdown_priority(aScore1,currState,goal) #need
+            #print("move to", moveTo[1])
+            #self.stack(bestBlock[1], moveTo[1])
             #for neighbor in nextneighbors:
              #   if neighbor not in Avistited:
               #      pathCost = node[1]+1
                      #aScore = heuristic(enpathCost,neighbor)
                 #    frontier.append((aScore,pathCost,neighbor))
                  #   Avistited.append(neighbor)
+            print("This it?", frontier)
+            self.putdown_priority(aScore1[1],currState,goal)
         return 0
 
 
@@ -248,7 +268,7 @@ if __name__ == "__main__":
     """
     Sample Plan
     """
-
+    
     p = Plan(initial_state_blocks, goal_state_blocks)
     p.sample_plan()
     
