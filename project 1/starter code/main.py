@@ -138,24 +138,29 @@ class Plan:
                 print("we can move this: ", i)
         return openMoves
 
-    def heuristic(self,moves,goal_state_blocks): #pick-up function 
+    def heuristic(self,moves,goal_state_blocks,initial_state_blocks): #pick-up function 
         blocks = [] # can anyone think of a better/ more efficent way to get the highest #
-        for i in range(len(moves)):
+        for i in range(len(initial_state_blocks)):
             score =0 
             if i == 0:
                 continue
-            if moves[i].clear == goal_state_blocks[i].clear:
+            if initial_state_blocks[i].clear == goal_state_blocks[i].clear:
                 score += 1
-            if moves[i].on == goal_state_blocks[i].on:
+                #print("CLEAR",initial_state_blocks[i],initial_state_blocks[i].clear)
+            #print("what it should be: ", goal_state_blocks[i],goal_state_blocks[i].clear)
+            if initial_state_blocks[i].on == goal_state_blocks[i].on:
                 score += 1
-            blocks.append((score,moves[i]))
-            print("the score for ", moves[i], "is ", score)
+                #print("ON",initial_state_blocks[i],initial_state_blocks[i].on)
+            #print("what it should be: ", goal_state_blocks[i],goal_state_blocks[i].on)
+            if initial_state_blocks[i] in moves:
+                blocks.append((score,initial_state_blocks[i]))
+            print("the score for ", initial_state_blocks[i], "is ", score)
             print("blocks list consists of ", blocks)
-            print(moves[i], "is clear?", moves[i].clear, "and is on?", moves[i].on)
+            print(initial_state_blocks[i], "is clear?", initial_state_blocks[i].clear, "and is on?", initial_state_blocks[i].on)
         #blocks.sort()
         bestMove = blocks.pop(0)
         print("thebest move,", bestMove)
-        return bestMove
+        return blocks
     
     def putdown_priority(self,block1,current_state,goal_state_blocks): 
         current_state[0].clear = True
@@ -182,13 +187,12 @@ class Plan:
         #Avistited = [] # temp visited list fro testing  # dont know yet  
         moves = self.clearBlocks(initial_state)
         print("SOS",moves)
-        aScore1 = self.heuristic(moves,goal)  #what block, from the list of the clear blocks should we move? 
-        frontier.append((aScore1))
+        frontier = self.heuristic(moves,goal,initial_state_blocks)  #what block, from the list of the clear blocks should we move? 
         print ("frontier ", frontier)
          # ***=========================================
         #Avistited.append(start) 
         while(frontier):
-            frontier.sort()
+            #frontier.sort()
             bestBlock = frontier.pop() # node with the lowest ASTAR score in frontier.
             print (bestBlock[1])
            # path.append(node[2])
@@ -206,7 +210,7 @@ class Plan:
                 #    frontier.append((aScore,pathCost,neighbor))
                  #   Avistited.append(neighbor)
             print("This it?", frontier)
-            self.putdown_priority(aScore1[1],currState,goal)
+            self.putdown_priority(bestBlock[1],currState,goal)
         return 0
 
 
