@@ -7,6 +7,7 @@
 #testing
 from state import State
 import itertools
+import copy
 
 class Plan:
     def __init__(self, initial_state, goal_state):
@@ -60,7 +61,7 @@ class Plan:
 
         # if block1 is clear safe to unstack
         if block1.clear:
-            print('unstacking',block1.id, 'from', block2.id)
+            #print('unstacking',block1.id, 'from', block2.id)
             # block1 should be in air
             # block1 should not be on block2
             # set block2 to clear (because block1 is in air)
@@ -110,25 +111,25 @@ class Plan:
     # Please fill in the sample plan to output the appropriate steps to reach the goal
     # ***=========================================
 
-    def neighbors(self, bestBlock, currState):
-        possibleMoves = []
-        print("GETTING THE NEIGHBORS FOR BLOCK "+ bestBlock.id)
-        if repr(bestBlock.on) == 'table':
-            print("picking up block " + bestBlock.id +  " from: ", bestBlock.on)
-            self.pickup(bestBlock)
-            print("block " + bestBlock.id + " is picked up and on: ", bestBlock.on)
-        else: 
-            print("unstacking block " + bestBlock.id + " from: ", bestBlock.on)
-            self.unstack(bestBlock,bestBlock.on)
-            print("block "  + bestBlock.id +  " is unstacked and on: ", bestBlock.on)
-        for i in currState:
-            if i.type == 3 or i.id == bestBlock.id:
-                continue
-            if i.clear:
-                possibleMoves.append(i)
-            print("curr state: ",i," is on ",  i.on, " and clear?: ", i.clear)
-            print("possible moves: ", possibleMoves)
-        return possibleMoves
+    # def neighbors(self, bestBlock, currState):
+    #     possibleMoves = []
+    #     print("GETTING THE NEIGHBORS FOR BLOCK "+ bestBlock.id)
+    #     if repr(bestBlock.on) == 'table':
+    #         print("picking up block " + bestBlock.id +  " from: ", bestBlock.on)
+    #         self.pickup(bestBlock)
+    #         print("block " + bestBlock.id + " is picked up and on: ", bestBlock.on)
+    #     else: 
+    #         print("unstacking block " + bestBlock.id + " from: ", bestBlock.on)
+    #         self.unstack(bestBlock,bestBlock.on)
+    #         print("block "  + bestBlock.id +  " is unstacked and on: ", bestBlock.on)
+    #     for i in currState:
+    #         if i.type == 3 or i.id == bestBlock.id:
+    #             continue
+    #         if i.clear:
+    #             possibleMoves.append(i)
+    #         print("curr state: ",i," is on ",  i.on, " and clear?: ", i.clear)
+    #         print("possible moves: ", possibleMoves)
+    #     return possibleMoves
    
     def newneighbors(self,currentstate):
         #Make 5 lists: putdown, unstack, stack, pickup, move
@@ -138,7 +139,7 @@ class Plan:
         pickup = []
         move =[]
         #Make a copy of the current state
-        curr = currentstate.deepcopy()
+        curr = copy.deepcopy(currentstate)
 
         #Make a table with the initial_state
 
@@ -155,7 +156,7 @@ class Plan:
         #Add those blocks into the list
         ontable_clear = []
         for items in curr:
-            if items.on =='table' and items.clear == True:
+            if repr(items.on) =='table' and items.clear == True:
                 ontable_clear.append(items)
             
 
@@ -165,54 +166,54 @@ class Plan:
         #Add those blocks into the list
         nottable_clear = []
         for items in curr:
-            if items.on !='table' and items.clear == True:
+            if repr(items.on) !='table' and items.clear == True and items != "table":
                 nottable_clear.append(items)
 
         #if block in air list have element(s) then only do putdown and stack
         if air:
             #putdown
             #copy the state
-            tryputdown = curr.deepcopy()#Maybe not curr
-            for items in tryputdown:#get the equivalent block from the copied state
-                if items == air[0]:
-                    self.putdown(items)#apply the operator
-            print(air)
-            putdown.append(tryputdown) #add those into putdown list (made in the previous step)
+            tryputdown = copy.deepcopy(curr)#Maybe not curr
+            for items in air:#get the equivalent block from the copied state
+                block_id = State.find(tryputdown, items.id)
+                self.putdown(block_id)#apply the operator
+                putdown.append((tryputdown, f"putdown{block_id}")) #add those into putdown list (made in the previous step)
 
             #stack
             clear = ontable_clear + nottable_clear
                 #it is a combination of (blocks_air & blocks_clear) (itertool recommendation)
                 #loop through all combinations:
-            stackblockproduct = itertools.product(air[0],clear)
-            print(stackblockproduct)
+            print("please",clear)
+            stackblockproduct = itertools.product(air,clear)
             for block,block1 in stackblockproduct:
-                trystack = curr.deepcopy()
+                trystack = copy.deepcopy(curr)
                     #make a copy 
                 # Figure out the Ids for block and block 1 using find
-                block_id = State.find(trystack, block)
-                block1_id = State.find(trystack, block1)
+                block_id = State.find(trystack, block.id)
+                block1_id = State.find(trystack, block1.id)
                 self.stack(block_id,block1_id) 
-                stack.append(trystack, f"stack{block_id, block1_id}")  
+                stack.append((trystack, f"stack{block_id, block1_id}"))  
                     #get the equivalent block from the copied state
                     #apply operator for the two blocks in the operator
                     #add those into stack list (made in the previous step)
         else:
     #if the block is not in the air - options: pickup, unstack, move (the steps for these should be somewhat the same as putdown and stack)
-        #pickup options
+        #pickup options       
             for items in ontable_clear:
-                trypick = curr.copy()
-                for stuff in trypick:
-                    if items == stuff:
-                        self.pickup(stuff)
-                        break
-                pickup.append(trypick)
+                trypick = copy.deepcopy(curr)
+                block_id = State.find(trypick, items.id)
+                self.pickup(block_id)
+                pickup.append((trypick, f"pickup{block_id}"))
 
             #apply pick operator on all blocks that are clear and are on the table
             #Add those into the pick list (made in the previous step)
         #unstack
             for items in nottable_clear:
-                tryunstack = curr.copy()
-                
+                tryunstack = copy.deepcopy(curr)
+                block_id = State.find(tryunstack, items.id)
+                block1_id = State.find(tryunstack, items.on.id)
+                self.unstack(block_id,block1_id)
+                unstack.append((tryunstack, f"unstack{block_id,block1_id}"))
             #apply unstack operator to all blocks that are clear and are not on table
             #Add those into the unstack list (made in the previous step)
         #move
@@ -221,7 +222,8 @@ class Plan:
             #it is the combination of blocks that are clear and not on table with blocks are simply clear (itertools recommendation)
 
     #return all five lists
-        return pickup,putdown,stack,unstack,move
+        print(stack+pickup+unstack+putdown+move)
+        return stack+pickup+unstack+putdown+move
 
     def clearBlocks(self,state):
         openMoves = []
@@ -327,22 +329,20 @@ class Plan:
         block_c = State.find(self.initial_state, "C")
         block_d = State.find(self.initial_state, "D")
         #block_e = State.find(self.initial_state, "E")
-  
-        self.aStar(self.initial_state, goal_state_blocks)
+
+        #self.aStar(self.initial_state, goal_state_blocks)
 
         #moves = self.clearBlocks(self.initial_state)
         #print("the open blocks that we can move are: ", moves)
         #self.heuristic(moves,goal_state_blocks)
-
-        
     
-      
         #Unstack the block
-        #self.unstack(block_d, block_c)
+        self.unstack(block_d, block_c)
 
         #print the state
-        action = f"unstack{block_d, block_c}"
-        #State.display(self.initial_state, message=action)
+        # action = f"unstack{block_d, block_c}"
+        # State.display(self.initial_state, message=action)
+        self.newneighbors(self.initial_state)
 
         #put the block on the table
         #self.putdown(block_d)
