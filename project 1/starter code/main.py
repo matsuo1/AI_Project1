@@ -39,7 +39,6 @@ class Plan:
 
         # get table object from initial state
         table = State.find(self.initial_state, "table")
-        
         if block1.air:
             
             block1.on = table
@@ -111,25 +110,7 @@ class Plan:
     # Please fill in the sample plan to output the appropriate steps to reach the goal
     # ***=========================================
 
-    # def neighbors(self, bestBlock, currState):
-    #     possibleMoves = []
-    #     print("GETTING THE NEIGHBORS FOR BLOCK "+ bestBlock.id)
-    #     if repr(bestBlock.on) == 'table':
-    #         print("picking up block " + bestBlock.id +  " from: ", bestBlock.on)
-    #         self.pickup(bestBlock)
-    #         print("block " + bestBlock.id + " is picked up and on: ", bestBlock.on)
-    #     else: 
-    #         print("unstacking block " + bestBlock.id + " from: ", bestBlock.on)
-    #         self.unstack(bestBlock,bestBlock.on)
-    #         print("block "  + bestBlock.id +  " is unstacked and on: ", bestBlock.on)
-    #     for i in currState:
-    #         if i.type == 3 or i.id == bestBlock.id:
-    #             continue
-    #         if i.clear:
-    #             possibleMoves.append(i)
-    #         print("curr state: ",i," is on ",  i.on, " and clear?: ", i.clear)
-    #         print("possible moves: ", possibleMoves)
-    #     return possibleMoves
+  
    
     def newneighbors(self,currentstate):
         #Make 5 lists: putdown, unstack, stack, pickup, move
@@ -222,134 +203,101 @@ class Plan:
             #it is the combination of blocks that are clear and not on table with blocks are simply clear (itertools recommendation)
 
     #return all five lists
-        print(stack+pickup+unstack+putdown+move)
+        print("Hello ", stack+pickup+unstack+putdown+move)
         return stack+pickup+unstack+putdown+move
 
-    def clearBlocks(self,state):
-        openMoves = []
-        for i in state:
-            if i.clear == True:
-                openMoves.append(i)
-                print("we can move this: ", i)
-        return openMoves
 
-    def heuristic(self,moves,goal_state_blocks,initial_state_blocks): #pick-up function 
-        totalnow = 0
-        target = 0
-        blocks = [] # can anyone think of a better/ more efficent way to get the highest #
-        for i in range(len(initial_state_blocks)):
-            score =0 
-            if i == 0:
+
+
+    
+    
+    def reachedGoal(self,curr,goal):
+        for i in range(len(curr)):
+            if curr[i].on == goal[i].on and curr[i].clear == goal[i].clear and curr[i].air == goal[i].air:
                 continue
-            target += 2
-            if initial_state_blocks[i].clear == goal_state_blocks[i].clear:
-                score += 1
-                #print("CLEAR",initial_state_blocks[i],initial_state_blocks[i].clear)
-            #print("what it should be: ", goal_state_blocks[i],goal_state_blocks[i].clear)
-            if initial_state_blocks[i].on == goal_state_blocks[i].on:
-                score += 1
-                #print("ON",initial_state_blocks[i],initial_state_blocks[i].on)
-            #print("what it should be: ", goal_state_blocks[i],goal_state_blocks[i].on)
-            totalnow += score
-            if initial_state_blocks[i] in moves:
-                blocks.append((score,initial_state_blocks[i].id,initial_state_blocks[i]))
-            #print("the score for ", initial_state_blocks[i], "is ", score)
-            #print("blocks list consists of ", blocks)
-            #print(initial_state_blocks[i], "is clear?", initial_state_blocks[i].clear, "and is on?", initial_state_blocks[i].on)
-        #blocks.sort()
-        print(totalnow, "vs", target)
-        # bestMove = blocks.pop(0)
-        # print("thebest move,", bestMove)
-        return blocks
+            else:
+                return False
+        return True 
     
-    def putdown_priority(self,block1,current_state,goal_state_blocks): 
-        current_state[0].clear = True
-        goal = goal_state_blocks
-        match = block1
-        for i in range(len(goal)):
-            if block1 == goal[i]: #If the loop finds the same block as the one in the air
-                match = goal[i]
-                break
-        for j in range(len(current_state)):
-            if match.on == current_state[j]:
-                print("helpme",current_state[j])
-                if current_state[j] == "table":
-                    self.putdown(block1)
-                elif current_state[j].clear == True:
-                    self.stack(block1,current_state[j])
-    
+    def inVisited(self,curr,visited):
+        for i in range(len(visited)):
+            print("FIRST FOR LOOP: ", visited[i])
+            for j in range(len(visited[i])):
+                print("SEC FOR LOOP: ",curr[j],visited[i][j])
+                print("Test for yooo:", curr[j].on,visited[i][j].on)
+                if repr(curr[j].on) == repr(visited[i][j].on) and repr(curr[j].clear) == repr(visited[i][j].clear) and repr(curr[j].air) == repr(visited[i][j].air):
+                    continue
+                else:
+                    return False
 
-    def aStar(self,initial_state,goal):
-        frontier= [] #priority queue
-        currState = initial_state
-        #path = [] # dont know yet 
-        #path.append(start) # dont know yet  
-        #Avistited = [] # temp visited list fro testing  # dont know yet  
-        moves = self.clearBlocks(initial_state)
-        print("SOS",moves)
-        frontier = self.heuristic(moves,goal,initial_state_blocks)  #what block, from the list of the clear blocks should we move? 
-        print ("frontieraf ", frontier)
-         # ***=========================================
-        #Avistited.append(start) 
-        while(frontier):
-            frontier = self.heuristic(moves,goal,initial_state_blocks)
-            frontier.sort()
-            print("yuh", frontier)
-            bestBlock = frontier.pop(0) # node with the lowest ASTAR score in frontier.
-            print (bestBlock[2])
-           # path.append(node[2])
-            #if node[2] == end:
-             #   return path #retrun path       
-            nextneighbors = self.neighbors(bestBlock[2],currState) 
-            print("neighbors", nextneighbors)  
-            #moveTo = self.putdown_priority(aScore1,currState,goal) #need
-            #print("move to", moveTo[1])
-            #self.stack(bestBlock[1], moveTo[1])
-            #for neighbor in nextneighbors:
-             #   if neighbor not in Avistited:
-              #      pathCost = node[1]+1
-                     #aScore = heuristic(enpathCost,neighbor)
-                #    frontier.append((aScore,pathCost,neighbor))
-                 #   Avistited.append(neighbor)
-            print("This it?", frontier)
-            self.putdown_priority(bestBlock[2],currState,goal)
-            #break
+        return True
+            
+                
+
+
+    def gbfs(self,initial_state,goal):
+        Priority_Queue = []
+        score = []  
+        pathTaken = []
+        pathTaken.append(initial_state)
+        startingFrom = self.lars_bennet_heuristic(initial_state, goal)
+        Priority_Queue.append((initial_state, list(),startingFrom, "Initial_State"))
+        print("FOLLOWING LARS: ", Priority_Queue)
+        gbfs_visited = [initial_state]
+        while Priority_Queue:
+            Priority_Queue.sort()
+            print("Priority QUEUE SORTED: ", Priority_Queue)
+            (curr, prev_explored, heuristic,move) = Priority_Queue.pop()
+            pathTaken.append((curr,move))
+            print("Aftoer pop:",curr,heuristic)
+            if(self.inVisited(curr,gbfs_visited)==False):
+                if heuristic == self.lars_bennet_heuristic(goal, goal):
+                    print("Determined that curr == end, returned prev_explored")
+                    State.display(curr, message= "Goal State Reached")                   
+                    return curr,pathTaken
+                else:
+                     gbfs_visited.append(curr)
+         
+            neighbors= self.newneighbors(curr)
+            funct= []
+            for i in neighbors:
+                print( "The neighbors are , ",i[0])
+                print( "The ENTIRE neighbors are , ")
+                score = self.lars_bennet_heuristic(i[0], goal)
+                print("The score is : ", score)
+                funct.append((i[0],list(),score,i[1]))
+                Priority_Queue.append((i[0],list(),score,i[1])) 
+            print("Priority QUEUE : ", Priority_Queue)
+            
         return 0
+
+    def lars_bennet_heuristic(self, curr, goal_state):
+        curr_score = 0 
+        #on:
+        for i in range(1,len(curr)):
+            goal_object = State.find(goal_state, goal_state[i].id)
+            if curr[i].on == goal_object.on:
+                curr_score += 1
+            #clear
+            if curr[i].clear == goal_object.clear:
+                curr_score += 1
+        return curr_score
+
+
+   
 
 
     def sample_plan(self):
+        stateFound, pathTaken = self.gbfs(self.initial_state, goal_state_blocks)
+        print("This is the path take:", len(pathTaken))
+        
+        print("THIS IS THE PATH WE TOOK TO SOLVE THAT PROBLEM: ")
+        for i in range(1,len(pathTaken)):
+            State.display(pathTaken[i][0], message=pathTaken[i][1])
+        print("Path takes",len(pathTaken)-1,"states")
 
-        # get the specific block objects
-        # Then, write code to understand the block i.e., if it is clear (or) on table, etc.
-        # Then, write code to perform actions using the operators (pick-up, stack, unstack).
+        return 0
 
-        # Below I manually hardcoded the plan for the current initial and goal state
-        # You must automate this code such that it would produce a plan for any initial and goal states.
-
-        block_c = State.find(self.initial_state, "C")
-        block_d = State.find(self.initial_state, "D")
-        #block_e = State.find(self.initial_state, "E")
-
-        #self.aStar(self.initial_state, goal_state_blocks)
-
-        #moves = self.clearBlocks(self.initial_state)
-        #print("the open blocks that we can move are: ", moves)
-        #self.heuristic(moves,goal_state_blocks)
-    
-        #Unstack the block
-        self.unstack(block_d, block_c)
-
-        #print the state
-        # action = f"unstack{block_d, block_c}"
-        # State.display(self.initial_state, message=action)
-        self.newneighbors(self.initial_state)
-
-        #put the block on the table
-        #self.putdown(block_d)
-
-        #print the state
-        #action = f"Putdown({block_d}, table)"
-        #State.display(self.initial_state, message=action)
 
 
 if __name__ == "__main__":
