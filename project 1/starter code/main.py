@@ -45,8 +45,8 @@ class Plan:
             block1.clear = True
             block1.air = False
             self.steps += 1
-            action = f"Putdown({block1}, table)"
-            State.display(self.initial_state, message=action)
+            #action = f"Putdown({block1}, table)"
+            #State.display(self.initial_state, message=action)
 
     def unstack(self, block1, block2):
         """
@@ -70,8 +70,8 @@ class Plan:
 
             block2.clear = True
             self.steps += 1
-            action = f"Unstack({block1}, {block2})"
-            State.display(self.initial_state, message=action)
+            #action = f"Unstack({block1}, {block2})"
+            #State.display(self.initial_state, message=action)
     
     def stack(self, block1, block2):
         #Operator to stack block1 onto block 2
@@ -83,8 +83,8 @@ class Plan:
 
             block2.clear = False 
             self.steps += 1
-            action = f"Stack{block1} on {block2}"
-            State.display(self.initial_state, message=action)
+            #action = f"Stack{block1} on {block2}"
+            #State.display(self.initial_state, message=action)
 
     def pickup(self,block1):
         table = State.find(self.initial_state, "table")
@@ -94,14 +94,14 @@ class Plan:
             block1.air = True
             block1.on = None
             self.steps += 1
-            action = f"Pick up {block1} from {table}"
-            State.display(self.initial_state, message=action)
+           # action = f"Pick up {block1} from {table}"
+            #State.display(self.initial_state, message=action)
             
     def move(self,block1):
         print('Moving...')
         self.steps += 1
-        action = f"Moved {block1}"
-        State.display(self.initial_state, message=action)
+        #action = f"Moved {block1}"
+        #State.display(self.initial_state, message=action)
 
 
     # ***=========================================
@@ -147,7 +147,7 @@ class Plan:
         #Add those blocks into the list
         nottable_clear = []
         for items in curr:
-            if repr(items.on) !='table' and items.clear == True and items != "table":
+            if repr(items.on) !='table' and items.clear == True and repr(items) != "table":
                 nottable_clear.append(items)
 
         #if block in air list have element(s) then only do putdown and stack
@@ -220,17 +220,18 @@ class Plan:
         return True 
     
     def inVisited(self,curr,visited):
+        factual = False
         for i in range(len(visited)):
             print("FIRST FOR LOOP: ", visited[i])
+            count = 0
             for j in range(len(visited[i])):
                 print("SEC FOR LOOP: ",curr[j],visited[i][j])
                 print("Test for yooo:", curr[j].on,visited[i][j].on)
-                if repr(curr[j].on) == repr(visited[i][j].on) and repr(curr[j].clear) == repr(visited[i][j].clear) and repr(curr[j].air) == repr(visited[i][j].air):
-                    continue
-                else:
-                    return False
-
-        return True
+                if repr(curr[j].on) != repr(visited[i][j].on) or repr(curr[j].clear) != repr(visited[i][j].clear) or repr(curr[j].air) != repr(visited[i][j].air):
+                    break
+                if j == (len(visited[i])-1):
+                    return True 
+        return False
             
                 
 
@@ -241,17 +242,20 @@ class Plan:
         pathTaken = []
         pathTaken.append(initial_state)
         startingFrom = self.lars_bennet_heuristic(initial_state, goal)
-        Priority_Queue.append((initial_state, list(),startingFrom, "Initial_State"))
+        Priority_Queue.append((startingFrom,initial_state, "Initial_State"))
         print("FOLLOWING LARS: ", Priority_Queue)
         gbfs_visited = [initial_state]
         while Priority_Queue:
             Priority_Queue.sort()
             print("Priority QUEUE SORTED: ", Priority_Queue)
-            (curr, prev_explored, heuristic,move) = Priority_Queue.pop()
+            (heuristic,curr, move) = Priority_Queue.pop(-1)
+            State.display(curr, message= move)  
+            #State.display(curr, message= "Goal State Reached")
             pathTaken.append((curr,move))
             print("Aftoer pop:",curr,heuristic)
             if(self.inVisited(curr,gbfs_visited)==False):
-                if heuristic == self.lars_bennet_heuristic(goal, goal):
+                #if heuristic == self.lars_bennet_heuristic(goal, goal):
+                if self.reachedGoal(curr,goal):
                     print("Determined that curr == end, returned prev_explored")
                     State.display(curr, message= "Goal State Reached")                   
                     return curr,pathTaken
@@ -259,15 +263,22 @@ class Plan:
                      gbfs_visited.append(curr)
          
             neighbors= self.newneighbors(curr)
-            funct= []
+            #bestN = []
             for i in neighbors:
                 print( "The neighbors are , ",i[0])
                 print( "The ENTIRE neighbors are , ")
+                if self.inVisited(i[0],gbfs_visited):
+                    print("SKIPPING SOMETHING__________")
+                    continue
                 score = self.lars_bennet_heuristic(i[0], goal)
                 print("The score is : ", score)
-                funct.append((i[0],list(),score,i[1]))
-                Priority_Queue.append((i[0],list(),score,i[1])) 
+                #bestN.append((score,i[0],i[1])) 
+                Priority_Queue.append((score,i[0],i[1])) 
+            #print("Priority QUEUE : ", Priority_Queue)
+            #best =  max(bestN)
+            #Priority_Queue.append(best)
             print("Priority QUEUE : ", Priority_Queue)
+            #print("Best N : ", max(bestN))
             
         return 0
 
@@ -277,10 +288,17 @@ class Plan:
         for i in range(1,len(curr)):
             goal_object = State.find(goal_state, goal_state[i].id)
             if curr[i].on == goal_object.on:
+                #if repr(curr[i].on) != 'table':
+                    #curr_score += 1
                 curr_score += 1
+          
             #clear
             if curr[i].clear == goal_object.clear:
+                #if repr(curr[i].on) != 'table':
+                    #curr_score += 1
                 curr_score += 1
+           
+            
         return curr_score
 
 
