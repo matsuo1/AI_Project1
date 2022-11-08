@@ -113,7 +113,7 @@ class Plan:
 
   
    
-    def newneighbors(self,currentstate):
+    def neighbors(self,currentstate):
         #Make 5 lists: putdown, unstack, stack, pickup, move
         putdown = []
         unstack =[]
@@ -159,7 +159,7 @@ class Plan:
             for items in air:#get the equivalent block from the copied state
                 block_id = State.find(tryputdown, items.id)
                 self.putdown(block_id)#apply the operator
-                putdown.append((tryputdown, f"putdown{block_id}")) #add those into putdown list (made in the previous step)
+                putdown.append((tryputdown, f"putdown {block_id}")) #add those into putdown list (made in the previous step)
 
             #stack
             clear = ontable_clear + nottable_clear
@@ -177,7 +177,7 @@ class Plan:
                 block_id = State.find(trystack, block.id)
                 block1_id = State.find(trystack, block1.id)
                 self.stack(block_id,block1_id) 
-                stack.append((trystack, f"stack{block_id, block1_id}"))  
+                stack.append((trystack, f"stack {block_id, block1_id}"))  
                     #get the equivalent block from the copied state
                     #apply operator for the two blocks in the operator
                     #add those into stack list (made in the previous step)
@@ -188,7 +188,7 @@ class Plan:
                 trypick = copy.deepcopy(curr)
                 block_id = State.find(trypick, items.id)
                 self.pickup(block_id)
-                pickup.append((trypick, f"pickup{block_id}"))
+                pickup.append((trypick, f"pickup {block_id}"))
 
             #apply pick operator on all blocks that are clear and are on the table
             #Add those into the pick list (made in the previous step)
@@ -247,7 +247,7 @@ class Plan:
             print("Priority QUEUE SORTED: ", Priority_Queue)
             (heuristic,curr, move) = Priority_Queue.pop(-1)
             Priority_Queue = []
-            State.display(curr, message= move)  
+            State.display(curr, message = move)  
             #State.display(curr, message= "Goal State Reached")
             pathTaken.append((curr,move))
             print("After pop:",curr,heuristic)
@@ -260,9 +260,9 @@ class Plan:
                     State.display(curr, message= "Goal State Reached")                   
                     return curr,pathTaken
                 else:
-                     gbfs_visited.append(curr)
-         
-            neighbors= self.newneighbors(curr)
+                    gbfs_visited.append(curr)
+
+            neighbors= self.neighbors(curr)
             bestN = []
             for i in neighbors:
                 print( "The neighbors are , ",i[0])
@@ -275,36 +275,40 @@ class Plan:
                 bestN.append((score,i[0],i[1])) 
                 Priority_Queue.append((score,i[0],i[1])) 
             #print("Priority QUEUE : ", Priority_Queue)
-            best =  max(bestN)
+            # best =  max(bestN)
             #Priority_Queue.append(best)
             print("Priority QUEUEEEEEEEEE : ", Priority_Queue)
             #print("Best N : ", max(bestN))
-            if Priority_Queue == []:
-                #We need to do something about this
-                Priority_Queue.append(best)
+            # if Priority_Queue == []:
+            #     #We need to do something about this
+            #     Priority_Queue.append(best)
             
         return 0
 
     def lars_bennet_heuristic(self, curr, goal_state):
         curr_score = 0 
+        curr_level = self.getLevels(curr)
         level = self.getLevels(goal_state)
+        print(curr_level)
+        print("-----------------------------")
+        print(level)
         #on:
         for i in range(1,len(goal_state)):
             goal_object = State.find(goal_state, goal_state[i].id)
             if curr[i].air == True:
-                print(curr[i])
                 curr_score += level[i-1] 
 
             if repr(curr[i].on) == repr(goal_object.on):
                 if repr(curr[i].on) == 'table':
                     curr_score += 100
+                elif curr_level[i-1] == level[i-1]:
+                    curr_score += 30
                 else:
-                    curr_score += 10
+                    curr_score -= 10
             else:
                 if repr(curr[i].on) == 'table':
                     curr_score += 5
                     #print("Go HERE?", curr_score)
-          
             #clear
             if curr[i].clear == goal_object.clear:
                 #if repr(curr[i].on) != 'table':
@@ -343,9 +347,11 @@ class Plan:
                 #print("level 0: ", goal_state[i])
             temp = goal_state[i]
             level = 0 
-            #print(temp, "id on", temp.on)
+            #print(temp, "is on", temp.on)
             while repr(temp.on) != 'table':
-                print(temp.id)
+                if temp.air ==True:
+                    level = None
+                    break
                 temp = temp.on
                 level -= 1
             lst.append(level)
@@ -361,7 +367,7 @@ class Plan:
         
         print("THIS IS THE PATH WE TOOK TO SOLVE THAT PROBLEM: ")
         for i in range(1,len(pathTaken)):
-            State.display(pathTaken[i][0], message=pathTaken[i][1])
+            State.display(pathTaken[i][0], message= pathTaken[i][1])
         print("Path takes",len(pathTaken)-1,"states")
 
         return 0
@@ -392,10 +398,3 @@ if __name__ == "__main__":
     
     p = Plan(initial_state_blocks, goal_state_blocks)
     p.sample_plan()
-    
-
-
-
-
-
-
