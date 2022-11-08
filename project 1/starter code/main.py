@@ -91,6 +91,7 @@ class Plan:
 
         if block1.on == table:
             print('Picking up: ',block1.id)
+            block1.clear = False
             block1.air = True
             block1.on = None
             self.steps += 1
@@ -167,6 +168,9 @@ class Plan:
             print("please",clear)
             stackblockproduct = itertools.product(air,clear)
             for block,block1 in stackblockproduct:
+                if block.id == block1.id:
+                    print("cannot do", block1, block)
+                    continue
                 trystack = copy.deepcopy(curr)
                     #make a copy 
                 # Figure out the Ids for block and block 1 using find
@@ -206,11 +210,6 @@ class Plan:
         print("Hello ", stack+pickup+unstack+putdown+move)
         return stack+pickup+unstack+putdown+move
 
-
-
-
-    
-    
     def reachedGoal(self,curr,goal):
         for i in range(len(curr)):
             if curr[i].on == goal[i].on and curr[i].clear == goal[i].clear and curr[i].air == goal[i].air:
@@ -220,13 +219,11 @@ class Plan:
         return True 
     
     def inVisited(self,curr,visited):
-        factual = False
         for i in range(len(visited)):
-            print("FIRST FOR LOOP: ", visited[i])
-            count = 0
+            #print("FIRST FOR LOOP: ", visited[i])
             for j in range(len(visited[i])):
-                print("SEC FOR LOOP: ",curr[j],visited[i][j])
-                print("Test for yooo:", curr[j].on,visited[i][j].on)
+                #print("SEC FOR LOOP: ",curr[j],visited[i][j])
+                #print("Test for yooo:", curr[j].on,visited[i][j].on)
                 if repr(curr[j].on) != repr(visited[i][j].on) or repr(curr[j].clear) != repr(visited[i][j].clear) or repr(curr[j].air) != repr(visited[i][j].air):
                     break
                 if j == (len(visited[i])-1):
@@ -249,10 +246,13 @@ class Plan:
             Priority_Queue.sort()
             print("Priority QUEUE SORTED: ", Priority_Queue)
             (heuristic,curr, move) = Priority_Queue.pop(-1)
+            Priority_Queue = []
             State.display(curr, message= move)  
             #State.display(curr, message= "Goal State Reached")
             pathTaken.append((curr,move))
-            print("Aftoer pop:",curr,heuristic)
+            print("After pop:",curr,heuristic)
+            if(self.inVisited(curr,gbfs_visited)==True):
+                print(curr,"STAY WITH ME")
             if(self.inVisited(curr,gbfs_visited)==False):
                 #if heuristic == self.lars_bennet_heuristic(goal, goal):
                 if self.reachedGoal(curr,goal):
@@ -263,7 +263,7 @@ class Plan:
                      gbfs_visited.append(curr)
          
             neighbors= self.newneighbors(curr)
-            #bestN = []
+            bestN = []
             for i in neighbors:
                 print( "The neighbors are , ",i[0])
                 print( "The ENTIRE neighbors are , ")
@@ -272,37 +272,87 @@ class Plan:
                     continue
                 score = self.lars_bennet_heuristic(i[0], goal)
                 print("The score is : ", score)
-                #bestN.append((score,i[0],i[1])) 
+                bestN.append((score,i[0],i[1])) 
                 Priority_Queue.append((score,i[0],i[1])) 
             #print("Priority QUEUE : ", Priority_Queue)
-            #best =  max(bestN)
+            best =  max(bestN)
             #Priority_Queue.append(best)
-            print("Priority QUEUE : ", Priority_Queue)
+            print("Priority QUEUEEEEEEEEE : ", Priority_Queue)
             #print("Best N : ", max(bestN))
+            if Priority_Queue == []:
+                #We need to do something about this
+                Priority_Queue.append(best)
             
         return 0
 
     def lars_bennet_heuristic(self, curr, goal_state):
         curr_score = 0 
+        level = self.getLevels(goal_state)
         #on:
-        for i in range(1,len(curr)):
+        for i in range(1,len(goal_state)):
             goal_object = State.find(goal_state, goal_state[i].id)
-            if curr[i].on == goal_object.on:
-                #if repr(curr[i].on) != 'table':
-                    #curr_score += 1
-                curr_score += 1
+            if curr[i].air == True:
+                print(curr[i])
+                curr_score += level[i-1] 
+
+            if repr(curr[i].on) == repr(goal_object.on):
+                if repr(curr[i].on) == 'table':
+                    curr_score += 100
+                else:
+                    curr_score += 10
+            else:
+                if repr(curr[i].on) == 'table':
+                    curr_score += 5
+                    #print("Go HERE?", curr_score)
           
             #clear
             if curr[i].clear == goal_object.clear:
                 #if repr(curr[i].on) != 'table':
                     #curr_score += 1
                 curr_score += 1
-           
+            
+    
             
         return curr_score
+    
+    def global_heuristic(self,curr, goal_state):
+        index = 0
+    #     curr_score = 0 
+        sumTotal = 0
+        for i in range(1,len(curr)):
+            goal_object = State.find(goal_state, goal_state[i].id)
+            if repr(curr[i].on) != 'table':
+                sumTotal += 0
+                print(curr[i].on)
+            index =0
+            while(repr(curr[index].on) != 'table'): 
+                print(curr[index].on)
+                if curr[index].on == goal_object.on:
+                    sumTotal += 1
+                    index +=1
+                else:
+                    sumTotal =0
+                    break
+        return sumTotal
 
 
-   
+    def getLevels(self, goal_state):
+        lst = []
+        for i in range(1,len(goal_state)):
+            #if(repr(goal_state[i].on) =='table'):
+                #print("level 0: ", goal_state[i])
+            temp = goal_state[i]
+            level = 0 
+            #print(temp, "id on", temp.on)
+            while repr(temp.on) != 'table':
+                print(temp.id)
+                temp = temp.on
+                level -= 1
+            lst.append(level)
+        #print(lst)
+
+
+        return lst
 
 
     def sample_plan(self):
