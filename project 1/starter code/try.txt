@@ -1,0 +1,2300 @@
+[table, A, B, C, D, E]
+
+
+******************
+Initial State
+******************
+        -------
+       |  C   |
+        -------
+        -------
+       |  A   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  E   |
+        -------
+        -------
+       |  D   |
+        -------
+----------------------------
+
+
+
+******************
+Goal State
+******************
+        -------
+       |  D   |
+        -------
+        -------
+       |  E   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  C   |
+        -------
+        -------
+       |  A   |
+        -------
+----------------------------
+
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+FOLLOWING LARS:  [(18, [table, A, B, C, D, E], 'Initial_State')]
+Priority QUEUE SORTED:  [(18, [table, A, B, C, D, E], 'Initial_State')]
+
+
+******************
+Initial_State
+******************
+        -------
+       |  C   |
+        -------
+        -------
+       |  A   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  E   |
+        -------
+        -------
+       |  D   |
+        -------
+----------------------------
+
+After pop: [table, A, B, C, D, E] 18
+[table, A, B, C, D, E] STAY WITH ME
+Hello  [([table, A, B, C, D, E], 'unstack(C, A)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+C
+The score is :  7
+Priority QUEUEEEEEEEEE :  [(7, [table, A, B, C, D, E], 'unstack(C, A)')]
+Priority QUEUE SORTED:  [(7, [table, A, B, C, D, E], 'unstack(C, A)')]
+
+
+******************
+unstack(C, A)
+******************
+              
+              
+              
+        -------
+       |  A   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  E   |
+        -------
+        -------
+       |  D   |
+        -------
+----------------------------
+
+After pop: [table, A, B, C, D, E] 7
+please [A]
+stacking C onto A
+Hello  [([table, A, B, C, D, E], 'stack (C, A)'), ([table, A, B, C, D, E], 'putdown C')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  12
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'putdown C')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'putdown C')]
+
+
+******************
+putdown C
+******************
+                      -------
+                     |  A   |
+                      -------
+                      -------
+                     |  B   |
+                      -------
+                      -------
+                     |  E   |
+                      -------
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 12
+Picking up:  C
+Hello  [([table, A, B, C, D, E], 'pickup C'), ([table, A, B, C, D, E], 'unstack(A, B)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+A
+The score is :  12
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'unstack(A, B)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'unstack(A, B)')]
+
+
+******************
+unstack(A, B)
+******************
+                            
+                            
+                            
+                      -------
+                     |  B   |
+                      -------
+                      -------
+                     |  E   |
+                      -------
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 12
+please [C, B]
+stacking A onto C
+stacking A onto B
+Hello  [([table, A, B, C, D, E], 'stack (A, C)'), ([table, A, B, C, D, E], 'stack (A, B)'), ([table, A, B, C, D, E], 'putdown A')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  12
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  111
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (111, [table, A, B, C, D, E], 'putdown A')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (111, [table, A, B, C, D, E], 'putdown A')]
+
+
+******************
+putdown A
+******************
+                                    -------
+                                   |  B   |
+                                    -------
+                                    -------
+                                   |  E   |
+                                    -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 111
+Picking up:  A
+Picking up:  C
+Hello  [([table, A, B, C, D, E], 'pickup A'), ([table, A, B, C, D, E], 'pickup C'), ([table, A, B, C, D, E], 'unstack(B, E)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+C
+The score is :  106
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+B
+The score is :  109
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (106, [table, A, B, C, D, E], 'pickup C'), (109, [table, A, B, C, D, E], 'unstack(B, E)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (106, [table, A, B, C, D, E], 'pickup C'), (109, [table, A, B, C, D, E], 'unstack(B, E)')]
+
+
+******************
+unstack(B, E)
+******************
+                                          
+                                          
+                                          
+                                    -------
+                                   |  E   |
+                                    -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 109
+please [A, C, E]
+stacking B onto A
+stacking B onto C
+stacking B onto E
+Hello  [([table, A, B, C, D, E], 'stack (B, A)'), ([table, A, B, C, D, E], 'stack (B, C)'), ([table, A, B, C, D, E], 'stack (B, E)'), ([table, A, B, C, D, E], 'putdown B')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  111
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  121
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  115
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (121, [table, A, B, C, D, E], 'stack (B, C)'), (115, [table, A, B, C, D, E], 'putdown B')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (121, [table, A, B, C, D, E], 'stack (B, C)')]
+
+
+******************
+stack (B, C)
+******************
+                      -------        -------
+                     |  B   |       |  E   |
+                      -------        -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 121
+Picking up:  A
+Hello  [([table, A, B, C, D, E], 'pickup A'), ([table, A, B, C, D, E], 'unstack(B, C)'), ([table, A, B, C, D, E], 'unstack(E, D)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+A
+The score is :  22
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+E
+The score is :  120
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (22, [table, A, B, C, D, E], 'pickup A'), (120, [table, A, B, C, D, E], 'unstack(E, D)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (120, [table, A, B, C, D, E], 'unstack(E, D)')]
+
+
+******************
+unstack(E, D)
+******************
+                                          
+                                          
+                                          
+                      -------              
+                     |  B   |              
+                      -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 120
+please [A, D, B]
+stacking E onto A
+stacking E onto D
+stacking E onto B
+Hello  [([table, A, B, C, D, E], 'stack (E, A)'), ([table, A, B, C, D, E], 'stack (E, D)'), ([table, A, B, C, D, E], 'stack (E, B)'), ([table, A, B, C, D, E], 'putdown E')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  123
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  133
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  127
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (123, [table, A, B, C, D, E], 'stack (E, A)'), (133, [table, A, B, C, D, E], 'stack (E, B)'), (127, [table, A, B, C, D, E], 'putdown E')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (123, [table, A, B, C, D, E], 'stack (E, A)'), (127, [table, A, B, C, D, E], 'putdown E'), (133, [table, A, B, C, D, E], 'stack (E, B)')]
+
+
+******************
+stack (E, B)
+******************
+                      -------              
+                     |  E   |              
+                      -------              
+                      -------              
+                     |  B   |              
+                      -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 133
+Picking up:  A
+Picking up:  D
+Hello  [([table, A, B, C, D, E], 'pickup A'), ([table, A, B, C, D, E], 'pickup D'), ([table, A, B, C, D, E], 'unstack(E, B)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+A
+The score is :  34
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+D
+The score is :  123
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (123, [table, A, B, C, D, E], 'stack (E, A)'), (127, [table, A, B, C, D, E], 'putdown E'), (34, [table, A, B, C, D, E], 'pickup A'), (123, [table, A, B, C, D, E], 'pickup D')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (123, [table, A, B, C, D, E], 'pickup D'), (123, [table, A, B, C, D, E], 'stack (E, A)'), (127, [table, A, B, C, D, E], 'putdown E')]
+
+
+******************
+putdown E
+******************
+                      -------                            
+                     |  B   |                            
+                      -------                            
+        -------        -------        -------        -------
+       |  A   |       |  C   |       |  D   |       |  E   |
+        -------        -------        -------        -------
+----------------------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 127
+Picking up:  A
+Picking up:  D
+Picking up:  E
+Hello  [([table, A, B, C, D, E], 'pickup A'), ([table, A, B, C, D, E], 'pickup D'), ([table, A, B, C, D, E], 'pickup E'), ([table, A, B, C, D, E], 'unstack(B, C)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+A
+The score is :  28
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+D
+The score is :  117
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+B
+The score is :  115
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (123, [table, A, B, C, D, E], 'pickup D'), (123, [table, A, B, C, D, E], 'stack (E, A)'), (28, [table, A, B, C, D, E], 'pickup A'), (117, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'unstack(B, C)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (117, [table, A, B, C, D, E], 'pickup D'), (123, [table, A, B, C, D, E], 'pickup D'), (123, [table, A, B, C, D, E], 'stack (E, A)')]
+
+
+******************
+stack (E, A)
+******************
+        -------        -------              
+       |  E   |       |  B   |              
+        -------        -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 123
+Picking up:  D
+Hello  [([table, A, B, C, D, E], 'pickup D'), ([table, A, B, C, D, E], 'unstack(B, C)'), ([table, A, B, C, D, E], 'unstack(E, A)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+D
+The score is :  113
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+B
+The score is :  111
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (117, [table, A, B, C, D, E], 'pickup D'), (123, [table, A, B, C, D, E], 'pickup D'), (113, [table, A, B, C, D, E], 'pickup D'), (111, [table, A, B, C, D, E], 'unstack(B, C)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (117, [table, A, B, C, D, E], 'pickup D'), (123, [table, A, B, C, D, E], 'pickup D')]
+
+
+******************
+pickup D
+******************
+                            
+                            
+                            
+                      -------
+                     |  E   |
+                      -------
+                      -------
+                     |  B   |
+                      -------
+        -------        -------
+       |  A   |       |  C   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 123
+please [A, E]
+stacking D onto A
+stacking D onto E
+Hello  [([table, A, B, C, D, E], 'stack (D, A)'), ([table, A, B, C, D, E], 'stack (D, E)'), ([table, A, B, C, D, E], 'putdown D')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  129
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  139
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (117, [table, A, B, C, D, E], 'pickup D'), (129, [table, A, B, C, D, E], 'stack (D, A)'), (139, [table, A, B, C, D, E], 'stack (D, E)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (117, [table, A, B, C, D, E], 'pickup D'), (129, [table, A, B, C, D, E], 'stack (D, A)'), (139, [table, A, B, C, D, E], 'stack (D, E)')]
+
+
+******************
+stack (D, E)
+******************
+                      -------
+                     |  D   |
+                      -------
+                      -------
+                     |  E   |
+                      -------
+                      -------
+                     |  B   |
+                      -------
+        -------        -------
+       |  A   |       |  C   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 139
+Picking up:  A
+Hello  [([table, A, B, C, D, E], 'pickup A'), ([table, A, B, C, D, E], 'unstack(D, E)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+A
+The score is :  40
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (117, [table, A, B, C, D, E], 'pickup D'), (129, [table, A, B, C, D, E], 'stack (D, A)'), (40, [table, A, B, C, D, E], 'pickup A')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (117, [table, A, B, C, D, E], 'pickup D'), (129, [table, A, B, C, D, E], 'stack (D, A)')]
+
+
+******************
+stack (D, A)
+******************
+                      -------
+                     |  E   |
+                      -------
+        -------        -------
+       |  D   |       |  B   |
+        -------        -------
+        -------        -------
+       |  A   |       |  C   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 129
+Hello  [([table, A, B, C, D, E], 'unstack(D, A)'), ([table, A, B, C, D, E], 'unstack(E, B)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+E
+The score is :  116
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (117, [table, A, B, C, D, E], 'pickup D'), (116, [table, A, B, C, D, E], 'unstack(E, B)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'pickup D')]
+
+
+******************
+pickup D
+******************
+                                          
+                                          
+                                          
+                      -------              
+                     |  B   |              
+                      -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 117
+please [A, E, B]
+stacking D onto A
+stacking D onto E
+stacking D onto B
+Hello  [([table, A, B, C, D, E], 'stack (D, A)'), ([table, A, B, C, D, E], 'stack (D, E)'), ([table, A, B, C, D, E], 'stack (D, B)'), ([table, A, B, C, D, E], 'putdown D')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  123
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  133
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  123
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (123, [table, A, B, C, D, E], 'stack (D, A)'), (133, [table, A, B, C, D, E], 'stack (D, E)'), (123, [table, A, B, C, D, E], 'stack (D, B)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (123, [table, A, B, C, D, E], 'stack (D, A)'), (123, [table, A, B, C, D, E], 'stack (D, B)'), (133, [table, A, B, C, D, E], 'stack (D, E)')]
+
+
+******************
+stack (D, E)
+******************
+                      -------        -------
+                     |  B   |       |  D   |
+                      -------        -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 133
+Picking up:  A
+Hello  [([table, A, B, C, D, E], 'pickup A'), ([table, A, B, C, D, E], 'unstack(B, C)'), ([table, A, B, C, D, E], 'unstack(D, E)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+A
+The score is :  34
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+B
+The score is :  121
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (123, [table, A, B, C, D, E], 'stack (D, A)'), (123, [table, A, B, C, D, E], 'stack (D, B)'), (34, [table, A, B, C, D, E], 'pickup A'), (121, [table, A, B, C, D, E], 'unstack(B, C)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (123, [table, A, B, C, D, E], 'stack (D, A)'), (123, [table, A, B, C, D, E], 'stack (D, B)')]
+
+
+******************
+stack (D, B)
+******************
+                      -------              
+                     |  D   |              
+                      -------              
+                      -------              
+                     |  B   |              
+                      -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 123
+Picking up:  A
+Picking up:  E
+Hello  [([table, A, B, C, D, E], 'pickup A'), ([table, A, B, C, D, E], 'pickup E'), ([table, A, B, C, D, E], 'unstack(D, B)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+A
+The score is :  24
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+E
+The score is :  116
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (123, [table, A, B, C, D, E], 'stack (D, A)'), (24, [table, A, B, C, D, E], 'pickup A'), (116, [table, A, B, C, D, E], 'pickup E')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (123, [table, A, B, C, D, E], 'stack (D, A)')]
+
+
+******************
+stack (D, A)
+******************
+        -------        -------              
+       |  D   |       |  B   |              
+        -------        -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 123
+Picking up:  E
+Hello  [([table, A, B, C, D, E], 'pickup E'), ([table, A, B, C, D, E], 'unstack(B, C)'), ([table, A, B, C, D, E], 'unstack(D, A)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+E
+The score is :  116
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+B
+The score is :  111
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (111, [table, A, B, C, D, E], 'unstack(B, C)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (121, [table, A, B, C, D, E], 'unstack(B, C)')]
+
+
+******************
+unstack(B, C)
+******************
+                                          
+                                          
+                                          
+                                    -------
+                                   |  D   |
+                                    -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 121
+please [A, C, D]
+stacking B onto A
+stacking B onto C
+stacking B onto D
+Hello  [([table, A, B, C, D, E], 'stack (B, A)'), ([table, A, B, C, D, E], 'stack (B, C)'), ([table, A, B, C, D, E], 'stack (B, D)'), ([table, A, B, C, D, E], 'putdown B')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  123
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  121
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  127
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (123, [table, A, B, C, D, E], 'stack (B, A)'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (127, [table, A, B, C, D, E], 'putdown B')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (123, [table, A, B, C, D, E], 'stack (B, A)'), (127, [table, A, B, C, D, E], 'putdown B')]
+
+
+******************
+putdown B
+******************
+                                                  -------
+                                                 |  D   |
+                                                  -------
+        -------        -------        -------        -------
+       |  A   |       |  B   |       |  C   |       |  E   |
+        -------        -------        -------        -------
+----------------------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 127
+Picking up:  A
+Picking up:  B
+Picking up:  C
+Hello  [([table, A, B, C, D, E], 'pickup A'), ([table, A, B, C, D, E], 'pickup B'), ([table, A, B, C, D, E], 'pickup C'), ([table, A, B, C, D, E], 'unstack(D, E)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+A
+The score is :  28
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+C
+The score is :  122
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+D
+The score is :  111
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (123, [table, A, B, C, D, E], 'stack (B, A)'), (28, [table, A, B, C, D, E], 'pickup A'), (122, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'unstack(D, E)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (122, [table, A, B, C, D, E], 'pickup C'), (123, [table, A, B, C, D, E], 'stack (B, A)')]
+
+
+******************
+stack (B, A)
+******************
+        -------                      -------
+       |  B   |                     |  D   |
+        -------                      -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 123
+Picking up:  C
+Hello  [([table, A, B, C, D, E], 'pickup C'), ([table, A, B, C, D, E], 'unstack(B, A)'), ([table, A, B, C, D, E], 'unstack(D, E)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+C
+The score is :  118
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+D
+The score is :  107
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (122, [table, A, B, C, D, E], 'pickup C'), (118, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (122, [table, A, B, C, D, E], 'pickup C')]
+
+
+******************
+pickup C
+******************
+                                          
+                                          
+                                          
+                                    -------
+                                   |  D   |
+                                    -------
+        -------        -------        -------
+       |  A   |       |  B   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 122
+please [A, B, D]
+stacking C onto A
+stacking C onto B
+stacking C onto D
+Hello  [([table, A, B, C, D, E], 'stack (C, A)'), ([table, A, B, C, D, E], 'stack (C, B)'), ([table, A, B, C, D, E], 'stack (C, D)'), ([table, A, B, C, D, E], 'putdown C')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  133
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  123
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  121
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (133, [table, A, B, C, D, E], 'stack (C, A)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (121, [table, A, B, C, D, E], 'stack (C, D)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (133, [table, A, B, C, D, E], 'stack (C, A)')]
+
+
+******************
+stack (C, A)
+******************
+        -------                      -------
+       |  C   |                     |  D   |
+        -------                      -------
+        -------        -------        -------
+       |  A   |       |  B   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 133
+Picking up:  B
+Hello  [([table, A, B, C, D, E], 'pickup B'), ([table, A, B, C, D, E], 'unstack(C, A)'), ([table, A, B, C, D, E], 'unstack(D, E)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+B
+The score is :  127
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+D
+The score is :  117
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'pickup B'), (117, [table, A, B, C, D, E], 'unstack(D, E)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'pickup B')]
+
+
+******************
+pickup B
+******************
+                            
+                            
+                            
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 127
+please [C, D]
+stacking B onto C
+stacking B onto D
+Hello  [([table, A, B, C, D, E], 'stack (B, C)'), ([table, A, B, C, D, E], 'stack (B, D)'), ([table, A, B, C, D, E], 'putdown B')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  139
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  127
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (139, [table, A, B, C, D, E], 'stack (B, C)'), (127, [table, A, B, C, D, E], 'stack (B, D)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'stack (B, D)'), (139, [table, A, B, C, D, E], 'stack (B, C)')]
+
+
+******************
+stack (B, C)
+******************
+        -------              
+       |  B   |              
+        -------              
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 139
+Hello  [([table, A, B, C, D, E], 'unstack(B, C)'), ([table, A, B, C, D, E], 'unstack(D, E)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+D
+The score is :  123
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'stack (B, D)'), (123, [table, A, B, C, D, E], 'unstack(D, E)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (123, [table, A, B, C, D, E], 'unstack(D, E)'), (127, [table, A, B, C, D, E], 'stack (B, D)')]
+
+
+******************
+stack (B, D)
+******************
+                      -------
+                     |  B   |
+                      -------
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 127
+Hello  [([table, A, B, C, D, E], 'unstack(B, D)'), ([table, A, B, C, D, E], 'unstack(C, A)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+C
+The score is :  116
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (123, [table, A, B, C, D, E], 'unstack(D, E)'), (116, [table, A, B, C, D, E], 'unstack(C, A)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (123, [table, A, B, C, D, E], 'unstack(D, E)')]
+
+
+******************
+unstack(D, E)
+******************
+                            
+                            
+                            
+        -------              
+       |  B   |              
+        -------              
+        -------              
+       |  C   |              
+        -------              
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 123
+please [E, B]
+stacking D onto E
+stacking D onto B
+Hello  [([table, A, B, C, D, E], 'stack (D, E)'), ([table, A, B, C, D, E], 'stack (D, B)'), ([table, A, B, C, D, E], 'putdown D')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  129
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  133
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (129, [table, A, B, C, D, E], 'stack (D, B)'), (133, [table, A, B, C, D, E], 'putdown D')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (129, [table, A, B, C, D, E], 'stack (D, B)'), (133, [table, A, B, C, D, E], 'putdown D')]
+
+
+******************
+putdown D
+******************
+        -------                            
+       |  B   |                            
+        -------                            
+        -------                            
+       |  C   |                            
+        -------                            
+        -------        -------        -------
+       |  A   |       |  D   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+After pop: [table, A, B, C, D, E] 133
+Picking up:  D
+Picking up:  E
+Hello  [([table, A, B, C, D, E], 'pickup D'), ([table, A, B, C, D, E], 'pickup E'), ([table, A, B, C, D, E], 'unstack(B, C)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+E
+The score is :  126
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+B
+The score is :  121
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (129, [table, A, B, C, D, E], 'stack (D, B)'), (126, [table, A, B, C, D, E], 'pickup E'), (121, [table, A, B, C, D, E], 'unstack(B, C)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (126, [table, A, B, C, D, E], 'pickup E'), (129, [table, A, B, C, D, E], 'stack (D, B)')]
+
+
+******************
+stack (D, B)
+******************
+        -------              
+       |  D   |              
+        -------              
+        -------              
+       |  B   |              
+        -------              
+        -------              
+       |  C   |              
+        -------              
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 129
+Picking up:  E
+Hello  [([table, A, B, C, D, E], 'pickup E'), ([table, A, B, C, D, E], 'unstack(D, B)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+E
+The score is :  122
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (126, [table, A, B, C, D, E], 'pickup E'), (122, [table, A, B, C, D, E], 'pickup E')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (122, [table, A, B, C, D, E], 'pickup E'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (126, [table, A, B, C, D, E], 'pickup E')]
+
+
+******************
+pickup E
+******************
+                            
+                            
+                            
+        -------              
+       |  B   |              
+        -------              
+        -------              
+       |  C   |              
+        -------              
+        -------        -------
+       |  A   |       |  D   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 126
+please [D, B]
+stacking E onto D
+stacking E onto B
+Hello  [([table, A, B, C, D, E], 'stack (E, D)'), ([table, A, B, C, D, E], 'stack (E, B)'), ([table, A, B, C, D, E], 'putdown E')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  127
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  139
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (122, [table, A, B, C, D, E], 'pickup E'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'stack (E, D)'), (139, [table, A, B, C, D, E], 'stack (E, B)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (122, [table, A, B, C, D, E], 'pickup E'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'stack (E, D)'), (139, [table, A, B, C, D, E], 'stack (E, B)')]
+
+
+******************
+stack (E, B)
+******************
+        -------              
+       |  E   |              
+        -------              
+        -------              
+       |  B   |              
+        -------              
+        -------              
+       |  C   |              
+        -------              
+        -------        -------
+       |  A   |       |  D   |
+        -------        -------
+------------------------------------------
+
+After pop: [table, A, B, C, D, E] 139
+Picking up:  D
+Hello  [([table, A, B, C, D, E], 'pickup D'), ([table, A, B, C, D, E], 'unstack(E, B)')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+D
+The score is :  129
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (122, [table, A, B, C, D, E], 'pickup E'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'stack (E, D)'), (129, [table, A, B, C, D, E], 'pickup D')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (122, [table, A, B, C, D, E], 'pickup E'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'stack (E, D)'), (129, [table, A, B, C, D, E], 'pickup D')]
+
+
+******************
+pickup D
+******************
+              
+              
+              
+        -------
+       |  E   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  C   |
+        -------
+        -------
+       |  A   |
+        -------
+----------------------------
+
+After pop: [table, A, B, C, D, E] 129
+please [E]
+stacking D onto E
+Hello  [([table, A, B, C, D, E], 'stack (D, E)'), ([table, A, B, C, D, E], 'putdown D')]
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+B
+C
+C
+D
+E
+B
+C
+E
+B
+C
+The score is :  145
+The neighbors are ,  [table, A, B, C, D, E]
+The ENTIRE neighbors are , 
+SKIPPING SOMETHING__________
+Priority QUEUEEEEEEEEE :  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (122, [table, A, B, C, D, E], 'pickup E'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'stack (E, D)'), (145, [table, A, B, C, D, E], 'stack (D, E)')]
+Priority QUEUE SORTED:  [(12, [table, A, B, C, D, E], 'stack (A, C)'), (22, [table, A, B, C, D, E], 'pickup A'), (24, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (28, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (34, [table, A, B, C, D, E], 'pickup A'), (40, [table, A, B, C, D, E], 'pickup A'), (106, [table, A, B, C, D, E], 'pickup C'), (107, [table, A, B, C, D, E], 'unstack(D, E)'), (111, [table, A, B, C, D, E], 'stack (B, A)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(B, C)'), (111, [table, A, B, C, D, E], 'unstack(D, E)'), (113, [table, A, B, C, D, E], 'pickup D'), (115, [table, A, B, C, D, E], 'putdown B'), (115, [table, A, B, C, D, E], 'unstack(B, C)'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'pickup E'), (116, [table, A, B, C, D, E], 'unstack(C, A)'), (116, [table, A, B, C, D, E], 'unstack(E, B)'), (117, [table, A, B, C, D, E], 'unstack(D, E)'), (118, [table, A, B, C, D, E], 'pickup C'), (121, [table, A, B, C, D, E], 'stack (B, D)'), (121, [table, A, B, C, D, E], 'stack (C, D)'), (121, [table, A, B, C, D, E], 'unstack(B, C)'), (122, [table, A, B, C, D, E], 'pickup E'), (123, [table, A, B, C, D, E], 'stack (C, B)'), (127, [table, A, B, C, D, E], 'stack (E, D)'), (145, [table, A, B, C, D, E], 'stack (D, E)')]
+
+
+******************
+stack (D, E)
+******************
+        -------
+       |  D   |
+        -------
+        -------
+       |  E   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  C   |
+        -------
+        -------
+       |  A   |
+        -------
+----------------------------
+
+After pop: [table, A, B, C, D, E] 145
+Determined that curr == end, returned prev_explored
+
+
+******************
+Goal State Reached
+******************
+        -------
+       |  D   |
+        -------
+        -------
+       |  E   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  C   |
+        -------
+        -------
+       |  A   |
+        -------
+----------------------------
+
+This is the path take: 34
+THIS IS THE PATH WE TOOK TO SOLVE THAT PROBLEM: 
+
+
+******************
+Initial_State
+******************
+        -------
+       |  C   |
+        -------
+        -------
+       |  A   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  E   |
+        -------
+        -------
+       |  D   |
+        -------
+----------------------------
+
+
+
+******************
+unstack(C, A)
+******************
+              
+              
+              
+        -------
+       |  A   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  E   |
+        -------
+        -------
+       |  D   |
+        -------
+----------------------------
+
+
+
+******************
+putdown C
+******************
+                      -------
+                     |  A   |
+                      -------
+                      -------
+                     |  B   |
+                      -------
+                      -------
+                     |  E   |
+                      -------
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+unstack(A, B)
+******************
+                            
+                            
+                            
+                      -------
+                     |  B   |
+                      -------
+                      -------
+                     |  E   |
+                      -------
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+putdown A
+******************
+                                    -------
+                                   |  B   |
+                                    -------
+                                    -------
+                                   |  E   |
+                                    -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+unstack(B, E)
+******************
+                                          
+                                          
+                                          
+                                    -------
+                                   |  E   |
+                                    -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+stack (B, C)
+******************
+                      -------        -------
+                     |  B   |       |  E   |
+                      -------        -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+unstack(E, D)
+******************
+                                          
+                                          
+                                          
+                      -------              
+                     |  B   |              
+                      -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+stack (E, B)
+******************
+                      -------              
+                     |  E   |              
+                      -------              
+                      -------              
+                     |  B   |              
+                      -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+putdown E
+******************
+                      -------                            
+                     |  B   |                            
+                      -------                            
+        -------        -------        -------        -------
+       |  A   |       |  C   |       |  D   |       |  E   |
+        -------        -------        -------        -------
+----------------------------------------------------------------------
+
+
+
+******************
+stack (E, A)
+******************
+        -------        -------              
+       |  E   |       |  B   |              
+        -------        -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  D   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+pickup D
+******************
+                            
+                            
+                            
+                      -------
+                     |  E   |
+                      -------
+                      -------
+                     |  B   |
+                      -------
+        -------        -------
+       |  A   |       |  C   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+stack (D, E)
+******************
+                      -------
+                     |  D   |
+                      -------
+                      -------
+                     |  E   |
+                      -------
+                      -------
+                     |  B   |
+                      -------
+        -------        -------
+       |  A   |       |  C   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+stack (D, A)
+******************
+                      -------
+                     |  E   |
+                      -------
+        -------        -------
+       |  D   |       |  B   |
+        -------        -------
+        -------        -------
+       |  A   |       |  C   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+pickup D
+******************
+                                          
+                                          
+                                          
+                      -------              
+                     |  B   |              
+                      -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+stack (D, E)
+******************
+                      -------        -------
+                     |  B   |       |  D   |
+                      -------        -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+stack (D, B)
+******************
+                      -------              
+                     |  D   |              
+                      -------              
+                      -------              
+                     |  B   |              
+                      -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+stack (D, A)
+******************
+        -------        -------              
+       |  D   |       |  B   |              
+        -------        -------              
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+unstack(B, C)
+******************
+                                          
+                                          
+                                          
+                                    -------
+                                   |  D   |
+                                    -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+putdown B
+******************
+                                                  -------
+                                                 |  D   |
+                                                  -------
+        -------        -------        -------        -------
+       |  A   |       |  B   |       |  C   |       |  E   |
+        -------        -------        -------        -------
+----------------------------------------------------------------------
+
+
+
+******************
+stack (B, A)
+******************
+        -------                      -------
+       |  B   |                     |  D   |
+        -------                      -------
+        -------        -------        -------
+       |  A   |       |  C   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+pickup C
+******************
+                                          
+                                          
+                                          
+                                    -------
+                                   |  D   |
+                                    -------
+        -------        -------        -------
+       |  A   |       |  B   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+stack (C, A)
+******************
+        -------                      -------
+       |  C   |                     |  D   |
+        -------                      -------
+        -------        -------        -------
+       |  A   |       |  B   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+pickup B
+******************
+                            
+                            
+                            
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+stack (B, C)
+******************
+        -------              
+       |  B   |              
+        -------              
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+stack (B, D)
+******************
+                      -------
+                     |  B   |
+                      -------
+        -------        -------
+       |  C   |       |  D   |
+        -------        -------
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+unstack(D, E)
+******************
+                            
+                            
+                            
+        -------              
+       |  B   |              
+        -------              
+        -------              
+       |  C   |              
+        -------              
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+putdown D
+******************
+        -------                            
+       |  B   |                            
+        -------                            
+        -------                            
+       |  C   |                            
+        -------                            
+        -------        -------        -------
+       |  A   |       |  D   |       |  E   |
+        -------        -------        -------
+--------------------------------------------------------
+
+
+
+******************
+stack (D, B)
+******************
+        -------              
+       |  D   |              
+        -------              
+        -------              
+       |  B   |              
+        -------              
+        -------              
+       |  C   |              
+        -------              
+        -------        -------
+       |  A   |       |  E   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+pickup E
+******************
+                            
+                            
+                            
+        -------              
+       |  B   |              
+        -------              
+        -------              
+       |  C   |              
+        -------              
+        -------        -------
+       |  A   |       |  D   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+stack (E, B)
+******************
+        -------              
+       |  E   |              
+        -------              
+        -------              
+       |  B   |              
+        -------              
+        -------              
+       |  C   |              
+        -------              
+        -------        -------
+       |  A   |       |  D   |
+        -------        -------
+------------------------------------------
+
+
+
+******************
+pickup D
+******************
+              
+              
+              
+        -------
+       |  E   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  C   |
+        -------
+        -------
+       |  A   |
+        -------
+----------------------------
+
+
+
+******************
+stack (D, E)
+******************
+        -------
+       |  D   |
+        -------
+        -------
+       |  E   |
+        -------
+        -------
+       |  B   |
+        -------
+        -------
+       |  C   |
+        -------
+        -------
+       |  A   |
+        -------
+----------------------------
+
+Path takes 33 states
